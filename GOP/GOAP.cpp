@@ -1,20 +1,53 @@
-// GOAP.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
-
 #include <iostream>
+#include <string>
+#include <vector>
+#include "State.cpp"
+#include "World.hpp"
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
-}
+    vector <Action> actions;
 
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
+    const string Weapon = "HasWeapon";
+    const string Ammo = "HasAmmo";
+    const string inRange = "InRange";
+    const string killEnnemy = "KillEnemy";
 
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.
+    Action attack("Attack", 1);
+    attack.setpreco(Weapon, true);
+    attack.setpreco(Ammo, true);
+    attack.setpreco(inRange, true);
+    attack.seteffect(killEnnemy, true);
+    actions.push_back(attack);
+
+    Action moveinrange(inRange, 5);
+    moveinrange.setpreco(inRange, false);
+    moveinrange.seteffect(inRange, true);
+    actions.push_back(moveinrange);
+
+    Action reload("Reload", 1);
+    reload.setpreco(Weapon, true);
+    reload.setpreco(Ammo, false);
+    reload.seteffect(Ammo, true);
+    actions.push_back(reload);
+
+    Action getweapon("GetWeapon", 3);
+    getweapon.setpreco(Weapon, false);
+    getweapon.setpreco(Ammo, false);
+    getweapon.seteffect(Weapon, true);
+    getweapon.seteffect(Ammo, true);
+    actions.push_back(getweapon);
+
+    WorldState initial_state("initial_state");
+    initial_state.setvariables(Weapon, false);
+    initial_state.setvariables(Ammo, false);
+    initial_state.setvariables(inRange, false);
+    initial_state.setvariables(killEnnemy, false);
+
+    WorldState goal_state("goal_state");
+    goal_state.setvariables(killEnnemy, true);
+
+};
+

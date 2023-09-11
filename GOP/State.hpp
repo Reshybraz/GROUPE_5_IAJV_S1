@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <unordered_map>
 
 using namespace std;
 #ifndef _STATE_HPP_
@@ -7,15 +8,17 @@ using namespace std;
 
 class State{
 private:
-	string precondition;
+	unordered_map<string, bool> precondition;
 	string name;
-	string effect;
+	unordered_map<string, bool> effect;
 	int cost;
 public:
-	State(string p, string n, string e, int c);
-	string getpreco() const;
+	State(string n, int c);
+	unordered_map<string, bool> getpreco() const;
+	unordered_map<string, bool> geteffect() const;
+	void setpreco(const string key, const bool value);
+	void seteffect(const string key, const bool value);
 	string getname() const;
-	string geteffect() const;
 	int getcost() const;
 };
 

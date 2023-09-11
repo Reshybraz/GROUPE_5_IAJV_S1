@@ -1,22 +1,28 @@
 #include "State.hpp"
 
-State::State(string p, string n, string e, int c) {
-	this->precondition = p;
+State::State(string n, int c) {
 	this->name = n;
-	this->effect = e;
 	this->cost = c;
 }
 
-string State::getpreco() const {
+unordered_map<string, bool> State::getpreco() const {
 	return this->precondition;
+}
+
+unordered_map<string, bool> State::geteffect() const {
+	return this->effect;
+}
+
+void State::setpreco(const string k, const bool v) {
+	this->precondition[k] = v;
+}
+
+void State::seteffect(const string k, const bool v) {
+	this->effect[k] = v;
 }
 
 string State::getname() const {
 	return this->name;
-}
-
-string State::geteffect() const {
-	return this->effect;
 }
 
 int State::getcost() const {

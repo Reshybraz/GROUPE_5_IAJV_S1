@@ -10,12 +10,12 @@ using namespace std;
 
 class Transition {
 private:
-	WorldState *ws_;
+	WorldAction *ws_;
 	Action *action_;
-	WorldState *parent_;
+	WorldAction *parent_;
 
 public:
-	Transition(WorldState& ws, Action& action, WorldState& parent);
+	Transition(WorldAction& ws, Action& action, WorldAction& parent);
 
 };
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "State.hpp"
+#include "Action.hpp"
 #include "World.hpp"
 
 using namespace std;
@@ -40,14 +40,14 @@ int main()
     getweapon.seteffect(Ammo, true);
     actions.push_back(getweapon);
 
-    WorldState initial_state("initial_state");
-    initial_state.setvariables(Weapon, false);
-    initial_state.setvariables(Ammo, false);
-    initial_state.setvariables(inRange, false);
-    initial_state.setvariables(killEnnemy, false);
+    WorldAction initial_Action("initial_Action");
+    initial_Action.setvariables(Weapon, false);
+    initial_Action.setvariables(Ammo, false);
+    initial_Action.setvariables(inRange, false);
+    initial_Action.setvariables(killEnnemy, false);
 
-    WorldState goal_state("goal_state");
-    goal_state.setvariables(killEnnemy, true);
+    WorldAction goal_Action("goal_Action");
+    goal_Action.setvariables(killEnnemy, true);
 
 };
 

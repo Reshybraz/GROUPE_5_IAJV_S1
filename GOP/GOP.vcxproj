@@ -127,13 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
     <ClCompile Include="GOAP.cpp" />
-    <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Transition.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="State.hpp" />
+    <ClInclude Include="Action.hpp" />
     <ClInclude Include="StateMachine.hpp" />
     <ClInclude Include="Transition.hpp" />
     <ClInclude Include="World.hpp" />

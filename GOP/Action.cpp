@@ -1,30 +1,30 @@
-#include "State.hpp"
+#include "Action.hpp"
 
-State::State(string n, int c) {
+Action::Action(string n, int c) {
 	this->name = n;
 	this->cost = c;
 }
 
-unordered_map<string, bool> State::getpreco() const {
+unordered_map<string, bool> Action::getpreco() const {
 	return this->precondition;
 }
 
-unordered_map<string, bool> State::geteffect() const {
+unordered_map<string, bool> Action::geteffect() const {
 	return this->effect;
 }
 
-void State::setpreco(const string k, const bool v) {
+void Action::setpreco(const string k, const bool v) {
 	this->precondition[k] = v;
 }
 
-void State::seteffect(const string k, const bool v) {
+void Action::seteffect(const string k, const bool v) {
 	this->effect[k] = v;
 }
 
-string State::getname() const {
+string Action::getname() const {
 	return this->name;
 }
 
-int State::getcost() const {
+int Action::getcost() const {
 	return this->cost;
 }

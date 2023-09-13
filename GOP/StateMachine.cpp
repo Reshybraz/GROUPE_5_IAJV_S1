@@ -1,5 +1,5 @@
-#include "Transition.hpp"
-#include "State.cpp"
+#include "StateMachine.hpp"
+#include "State.hpp"
 
 Astar::Astar() {
 

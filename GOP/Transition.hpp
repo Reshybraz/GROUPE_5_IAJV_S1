@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include <unordered_map>
-#include "World.cpp"
-#include "State.cpp"
+#include "World.hpp"
+class Action;
 
 using namespace std;
 #ifndef _TRANSITION_HPP_
@@ -10,9 +10,9 @@ using namespace std;
 
 class Transition {
 private:
-	WorldState ws_*;
-	Action action_*;
-	WorldState parent_*;
+	WorldState *ws_;
+	Action *action_;
+	WorldState *parent_;
 
 public:
 	Transition(WorldState& ws, Action& action, WorldState& parent);

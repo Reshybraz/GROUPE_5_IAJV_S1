@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "State.cpp"
+#include "State.hpp"
 #include "World.hpp"
 
 using namespace std;

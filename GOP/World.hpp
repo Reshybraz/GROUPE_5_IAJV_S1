@@ -6,12 +6,12 @@ using namespace std;
 #ifndef _WORLD_HPP_
 #define _WORLD_HPP_
 
-class WorldAction {
+class WorldState {
 private:
 	string name;
 	unordered_map<string,bool> variables;
 public:
-	WorldAction(string name);
+	WorldState(string name);
 
 	void setvariables(const string key, const bool value);
 	unordered_map<string, bool> getvariables();

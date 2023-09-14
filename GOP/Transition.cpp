@@ -1,7 +1,7 @@
 #include "Transition.hpp"
 
 
-Transition::Transition(WorldAction& ws, Action& action, WorldAction& parent) {
+Transition::Transition(WorldState& ws, Action& action, WorldState& parent) {
 	ws_ = &ws;
 	action_ = &action;
 	parent_ = &parent;

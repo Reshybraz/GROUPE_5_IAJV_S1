@@ -1,13 +1,13 @@
 #include "World.hpp"
 
-WorldAction::WorldAction(string name) {
+WorldState::WorldState(string name) {
 	this->name = name;
 }
 
-void WorldAction::setvariables(const string key, const bool value) {
+void WorldState::setvariables(const string key, const bool value) {
 	this->variables[key] = value;
 }
 
-unordered_map<string, bool> WorldAction::getvariables() {
+unordered_map<string, bool> WorldState::getvariables() {
 	return this->variables;
 }

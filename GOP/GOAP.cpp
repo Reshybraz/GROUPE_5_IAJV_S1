@@ -30,18 +30,18 @@ int main()
     moveinrange.seteffect(inRange, true);
     actions.push_back(moveinrange);
 
-    Action reload("Reload", 1);
-    reload.setpreco(Weapon, true);
-    reload.setpreco(Ammo, false);
-    reload.seteffect(Ammo, true);
-    actions.push_back(reload);
-
     Action getweapon("GetWeapon", 3);
     getweapon.setpreco(Weapon, false);
     getweapon.setpreco(Ammo, false);
     getweapon.seteffect(Weapon, true);
     getweapon.seteffect(Ammo, true);
     actions.push_back(getweapon);
+
+    Action reload("Reload", 1);
+    reload.setpreco(Weapon, true);
+    reload.setpreco(Ammo, false);
+    reload.seteffect(Ammo, true);
+    actions.push_back(reload);
 
     WorldState initial_state("initial_state");
     initial_state.setvariables(Weapon, false);
@@ -61,21 +61,26 @@ int main()
     }
     assert(precos.size() != 0);
     int i = 0;
+    int cost = 0;
     while (precos.size() > 0 && i < 10) {
         string preco = precos[0];
-        ptrdiff_t pos = find(precos.begin(), precos.end(), preco) - precos.begin();
+        const auto& begin = precos.begin();
+        const auto& end = precos.end();
+        ptrdiff_t pos = find(begin, end, preco) - begin;
         if (find(precosverified.begin(), precosverified.end(), preco) != precosverified.end()) {
-            precos.erase(precos.begin() + pos);
+            precos.erase(begin + pos);
         }
         for (Action a : actions) {
             unordered_map<string, bool> aEffects = a.geteffect(); // attentio !
             if (aEffects.find(preco) != aEffects.end() && aEffects.at(preco) == true) {
                 actionstodo.push_back(a);
+                cost += a.getcost();
                 precosverified.push_back(preco);
                 for (auto& prec : a.getpreco()) {
-                    if (find(precos.begin(), precos.end(), prec.first) != precos.end()) {
+                    if (find(begin, end, prec.first) != end) {
                         if (!(find(precosverified.begin(), precosverified.end(), prec.first) != precosverified.end())) {
                             precosverified.push_back(prec.first);
+                            precos.erase(precos.begin() + pos);
 
                         }
                     }
@@ -93,12 +98,14 @@ int main()
         cout << a.getname() << "\n";
     }
     cout << "\n";
+    cout << "cout total : " << cost;
+    /*
     for (string s : precos) {
         cout << s << "\n";
     }
     cout << "\n";
     for (string s : precosverified) {
         cout << s << "\n";
-    }
+    }*/
 };
 
